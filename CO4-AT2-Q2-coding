@@ -1,19 +1,15 @@
                                                           # B.Bala narayana(192525157)
-# Product investments and profits
 investment = [20000, 30000, 40000, 50000]
 profit = [25000, 40000, 50000, 65000]
 
 budget = 100000
 n = len(investment)
 
-# Convert budget to units of 1000 to reduce table size
 budget = budget // 1000
 investment = [x // 1000 for x in investment]
 
-# DP table
 dp = [[0 for _ in range(budget + 1)] for _ in range(n + 1)]
 
-# Fill DP table
 for i in range(1, n + 1):
     for w in range(budget + 1):
         if investment[i - 1] <= w:
@@ -24,5 +20,4 @@ for i in range(1, n + 1):
         else:
             dp[i][w] = dp[i - 1][w]
 
-# Maximum profit
 print("Maximum Profit =", dp[n][budget])
