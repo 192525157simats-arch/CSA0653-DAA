@@ -1,0 +1,36 @@
+                                          B.BALA NARAYANA(192525157)
+
+weights = [10, 20, 30, 25]
+profits = [60, 100, 120, 110]
+capacity = 50
+
+items = []
+for i in range(len(weights)):
+    items.append((profits[i] / weights[i], weights[i], profits[i]))
+
+items.sort(reverse=True)
+
+total_weight = 0
+greedy_profit = 0
+
+for ratio, w, p in items:
+    if total_weight + w <= capacity:
+        total_weight += w
+        greedy_profit += p
+
+print("Greedy Profit =", greedy_profit)
+
+n = len(weights)
+dp = [[0] * (capacity + 1) for _ in range(n + 1)]
+
+for i in range(1, n + 1):
+    for w in range(capacity + 1):
+        if weights[i - 1] <= w:
+            dp[i][w] = max(
+                profits[i - 1] + dp[i - 1][w - weights[i - 1]],
+                dp[i - 1][w]
+            )
+        else:
+            dp[i][w] = dp[i - 1][w]
+
+print("Optimal Profit (DP) =", dp[n][capacity])
