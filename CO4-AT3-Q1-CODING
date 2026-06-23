@@ -1,0 +1,26 @@
+                                                   B.BALA NARAYANA(192525157)
+investments = ['A', 'B', 'C', 'D']
+capital = [20000, 30000, 40000, 50000]
+returns = [25000, 40000, 50000, 70000]
+
+budget = 80000
+
+items = []
+
+for i in range(len(investments)):
+    ratio = returns[i] / capital[i]
+    items.append((ratio, investments[i], capital[i], returns[i]))
+
+items.sort(reverse=True)
+
+selected = []
+total_return = 0
+
+for ratio, name, cap, ret in items:
+    if cap <= budget:
+        selected.append(name)
+        budget -= cap
+        total_return += ret
+
+print("Selected Investments:", selected)
+print("Total Return:", total_return)
