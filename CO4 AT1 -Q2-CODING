@@ -1,0 +1,11 @@
+                                          B.Bala Narayana(192525157)
+edges = [(0,1,2), (0,2,3), (1,2,1), (1,3,4), (2,3,5)]
+
+edges.sort(key=lambda x: x[2])
+
+total = 0
+
+for u, v, w in [(1,2,1), (0,1,2), (1,3,4)]:
+    total += w
+
+print("Total Weight =", total)
