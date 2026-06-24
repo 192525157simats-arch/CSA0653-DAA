@@ -1,16 +1,44 @@
                                             B.Bala Narayana(192525157)
 
-def color_exam(exam):
-    if all exams colored:
+exams = ["Math", "Physics", "Chemistry", "English"]
+
+graph = {
+    "Math": ["Physics", "Chemistry"],
+    "Physics": ["Math", "English"],
+    "Chemistry": ["Math"],
+    "English": ["Physics"]
+}
+
+slots = ["Slot1", "Slot2", "Slot3"]
+
+timetable = {}
+
+def is_safe(exam, slot):
+    for neighbor in graph[exam]:
+        if neighbor in timetable and timetable[neighbor] == slot:
+            return False
+    return True
+
+def schedule_exam(index):
+    if index == len(exams):
         return True
 
-    for slot in slots:
-        if safe(exam, slot):
-            assign(exam, slot)
+    exam = exams[index]
 
-            if color_exam(next_exam):
+    for slot in slots:
+        if is_safe(exam, slot):
+            timetable[exam] = slot
+
+            if schedule_exam(index + 1):
                 return True
 
-            remove(exam)
+            del timetable[exam]
 
     return False
+
+if schedule_exam(0):
+    print("Exam Timetable:")
+    for exam in exams:
+        print(exam, "->", timetable[exam])
+else:
+    print("No feasible timetable")
