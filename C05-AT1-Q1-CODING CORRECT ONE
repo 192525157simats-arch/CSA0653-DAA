@@ -1,0 +1,30 @@
+B.Bala Narayana(192525157)
+
+jobs = ["J1", "J2", "J3"]
+employees = ["E1", "E2", "E3"]
+
+assignment = {}
+
+def assign_job(index):
+    if index == len(jobs):
+        return True
+
+    job = jobs[index]
+
+    for emp in employees:
+        if emp not in assignment.values():
+            assignment[job] = emp
+
+            if assign_job(index + 1):
+                return True
+
+            del assignment[job]
+
+    return False
+
+if assign_job(0):
+    print("Job Assignment:")
+    for job in jobs:
+        print(job, "->", assignment[job])
+else:
+    print("No feasible assignment")
