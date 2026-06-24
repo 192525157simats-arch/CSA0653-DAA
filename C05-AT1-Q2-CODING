@@ -1,0 +1,16 @@
+                                            B.Bala Narayana(192525157)
+
+def color_exam(exam):
+    if all exams colored:
+        return True
+
+    for slot in slots:
+        if safe(exam, slot):
+            assign(exam, slot)
+
+            if color_exam(next_exam):
+                return True
+
+            remove(exam)
+
+    return False
